@@ -17,13 +17,17 @@ $db = new Database($server, $username, $password, $dbname);
 
 
 
+$pattern = '/^\+7\d{10}$/'; // паттерн проверки корректности номера
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
 
-    if (empty($name) || empty($email) || empty($phone)) {
+    if (!preg_match($pattern, $phone)) echo "Телефонный номер некорректный.";
+
+    elseif (empty($name) || empty($email) || empty($phone)) {
         echo "Пожалуйста, заполните все поля.";
     } else {
         if ($db->add($name, $email, $phone) !== false) {

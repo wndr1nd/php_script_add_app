@@ -27,7 +27,8 @@ class Database {
 
 
     public function add($name, $email, $phone) {
-        $query = "INSERT INTO app_db.users (name, email, phone) VALUES ('$name', '$email', $phone)";
+        $name_db = $this->dbname;
+        $query = "INSERT INTO ${name_db}.users (name, email, phone) VALUES ('$name', '$email', $phone)";
         $this->query($query);
     }
 

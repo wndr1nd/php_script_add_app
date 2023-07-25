@@ -38,8 +38,8 @@ class CreateDatabase {
         }
     }
 
-    public function createTableUsers() {
-        $sql = "CREATE TABLE IF NOT EXISTS users (
+    public function createTable($name) {
+        $sql = "CREATE TABLE IF NOT EXISTS $name (
             id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
@@ -47,7 +47,7 @@ class CreateDatabase {
         )";
 
         if ($this->conn->query($sql) === TRUE) {
-            echo "Таблица users успешно создана или уже существует.";
+            echo "Таблица $name успешно создана или уже существует.";
         } else {
             echo "Ошибка при создании таблицы: " . $this->conn->error;
         }
